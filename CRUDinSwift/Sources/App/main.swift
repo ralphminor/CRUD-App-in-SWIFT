@@ -12,8 +12,8 @@ drop.get { req in
 }
 
 drop.get("template") { request in
-    return try drop.view.make("form", [
-        "message": "Oh hell yeah!"
+    return try drop.view.make("patient", [
+        "message": "Patient Info Passed In Here"
         ])
 }
 
@@ -34,11 +34,15 @@ drop.post("patients") { request in
 }
 
 drop.get("patients", Patient.self) { request, patient in
-    return "You requested \(patient.firstName) \(patient.lastName)"
+    return try drop.view.make("patient", [
+        "message": "You requested \(patient.firstName) \(patient.lastName)"
+        ])
 }
 
 drop.get("patients") { request in
-    return try JSON(node: Patient.all().makeNode())
+    return try drop.view.make("patient", [
+        "message": JSON(node: Patient.all().makeNode())
+        ])
 }
 
 drop.put("patients", Patient.self) { request, patient in
