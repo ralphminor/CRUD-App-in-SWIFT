@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+<h1>Form</h1>
+#import("head")
+</head>
+<body>
+#import("body")
+</body>
+</html>

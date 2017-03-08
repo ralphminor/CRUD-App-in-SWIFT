@@ -11,6 +11,13 @@ drop.get { req in
     ])
 }
 
+drop.get("template") { request in
+    return try drop.view.make("form", [
+        "message": "Oh hell yeah!"
+        ])
+}
+
+
 drop.get("version") { request in
     if let db = drop.database?.driver as? PostgreSQLDriver {
         let version = try db.raw("SELECT version()")
@@ -27,7 +34,7 @@ drop.post("patients") { request in
 }
 
 drop.get("patients", Patient.self) { request, patient in
-    return "You requested \(patient.firstName)"
+    return "You requested \(patient.firstName) \(patient.lastName)"
 }
 
 drop.get("patients") { request in
