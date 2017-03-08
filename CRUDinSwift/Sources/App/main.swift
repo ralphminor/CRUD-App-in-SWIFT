@@ -33,15 +33,17 @@ drop.post("patients") { request in
     return patient
 }
 
+
 drop.get("patients", Patient.self) { request, patient in
     return try drop.view.make("patient", [
-        "message": "You requested \(patient.firstName) \(patient.lastName)"
+        "patient": patient
         ])
 }
 
 drop.get("patients") { request in
-    return try drop.view.make("patient", [
-        "message": JSON(node: Patient.all().makeNode())
+    let patients = try Patient.all().makeNode()
+    return try drop.view.make("patients", [
+        "patients": patients
         ])
 }
 

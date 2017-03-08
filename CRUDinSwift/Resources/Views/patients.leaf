@@ -8,11 +8,15 @@
 }
 
 #export("body") {
-<h1>Single Patient View</h1>
+<h1>Patients</h1>
 
 <ul>
+#loop(patients, "patient") {
 <li>#(patient.id): #(patient.last_name), #(patient.first_name)</li>
+
+}
 </ul>
 </div>
+}
 
 }
